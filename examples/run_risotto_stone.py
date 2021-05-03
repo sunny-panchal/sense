@@ -32,6 +32,7 @@ from sense.controller import Controller
 from sense.downstream_tasks.nn_utils import Pipe
 from sense.downstream_tasks.nn_utils import LogisticRegression
 from sense.downstream_tasks.postprocess import PostprocessClassificationOutput
+from sense.downstream_tasks.risotto_stone.instructor import RecipeInstructor
 from sense.loading import build_backbone_network
 from sense.loading import load_weights_from_resources
 from sense.loading import update_backbone_weights
@@ -39,40 +40,40 @@ from sense.loading import ModelConfig
 
 
 # with background
-# LAB2INT = {
-#   "adding_ingredient_tag_1": 0,
-#   "adding_ingredient_tag_2": 1,
-#   "background": 2,
-#   "background_tag_1": 3,
-#   "background_tag_2": 4,
-#   "chopping_tag_1": 5,
-#   "chopping_tag_2": 6,
-#   "placing_pot_tag_1": 7,
-#   "placing_pot_tag_2": 8,
-#   "ready_tag_1": 9,
-#   "ready_tag_2": 10,
-#   "stirring_pot_tag_1": 11,
-#   "stirring_pot_tag_2": 12,
-#   "tasting_tag_1": 13,
-#   "tasting_tag_2": 14
-# }
-
-# without background
 LAB2INT = {
   "adding_ingredient_tag_1": 0,
   "adding_ingredient_tag_2": 1,
   "background": 2,
-  "chopping_tag_1": 3,
-  "chopping_tag_2": 4,
-  "placing_pot_tag_1": 5,
-  "placing_pot_tag_2": 6,
-  "ready_tag_1": 7,
-  "ready_tag_2": 8,
-  "stirring_pot_tag_1": 9,
-  "stirring_pot_tag_2": 10,
-  "tasting_tag_1": 11,
-  "tasting_tag_2": 12
+  "background_tag_1": 3,
+  "background_tag_2": 4,
+  "chopping_tag_1": 5,
+  "chopping_tag_2": 6,
+  "placing_pot_tag_1": 7,
+  "placing_pot_tag_2": 8,
+  "ready_tag_1": 9,
+  "ready_tag_2": 10,
+  "stirring_pot_tag_1": 11,
+  "stirring_pot_tag_2": 12,
+  "tasting_tag_1": 13,
+  "tasting_tag_2": 14
 }
+
+# without background
+# LAB2INT = {
+#   "adding_ingredient_tag_1": 0,
+#   "adding_ingredient_tag_2": 1,
+#   "background": 2,
+#   "chopping_tag_1": 3,
+#   "chopping_tag_2": 4,
+#   "placing_pot_tag_1": 5,
+#   "placing_pot_tag_2": 6,
+#   "ready_tag_1": 7,
+#   "ready_tag_2": 8,
+#   "stirring_pot_tag_1": 9,
+#   "stirring_pot_tag_2": 10,
+#   "tasting_tag_1": 11,
+#   "tasting_tag_2": 12
+# }
 
 INT2LAB = {v: k for k, v in LAB2INT.items()}
 
@@ -92,9 +93,9 @@ if __name__ == "__main__":
 
     # Load custom classifier
     # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_no_bg.ckpt')
-    checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_no_bg_16.ckpt')
+    # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_no_bg_16.ckpt')
     # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_bg.ckpt')
-    # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_bg_16.ckpt')
+    checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_bg_16.ckpt')
 
     # Update original weights in case some intermediate layers have been finetuned
     update_backbone_weights(backbone_weights, checkpoint_classifier)
@@ -118,6 +119,7 @@ if __name__ == "__main__":
         sense.display.DisplayFPS(expected_camera_fps=net.fps,
                                  expected_inference_fps=net.fps / net.step_size),
         sense.display.DisplayTopKClassificationOutputs(top_k=1, threshold=0.1),
+        RecipeInstructor(),
     ]
     display_results = sense.display.DisplayResults(title=title, display_ops=display_ops)
 

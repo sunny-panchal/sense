@@ -14,6 +14,7 @@ natsort                 ==7.1.1       # MIT
 Flask-SocketIO          ==5.0.1       # MIT
 python-engineio         ==4.0.1       # MIT
 python-socketio         ==5.1.0       # MIT
+PyYAML                  ~=5.3.1      # MIT
 
 # Dependencies needed for converting Pytorch models to tensorflow Lite
 tensorflow              ==2.3.1      # Apache 2.0

@@ -1,0 +1,84 @@
+CreamyMushroomRisotto:
+  servings: 2
+
+  ingredients:
+    olive oil:
+      qty: 1
+      unit: tbsp
+    white onion:
+      qty: 0.5
+      unit: whole
+      prep: diced
+    garlic:
+      qty: 3
+      unit: cloves
+      prep: minced
+    mushrooms:
+      qty: 100
+      unit: g
+      prep: thinly sliced
+    risotto rice:
+      qty: 100
+      unit: g
+    white wine:
+      qty: 2
+      unit: tbsp
+    vegetable stock:
+      qty: 500
+      unit: ml
+    chilli pepper:
+      qty: 1
+      unit: whole
+      prep: minced
+
+  instructions:
+    1:
+      instruction: Place your pot on the stove.
+      exit_conditions:
+        - 'placing_pot_tag_1'
+        - 'ready_tag_1'
+    2:
+      instruction: Add olive oil to the pot and heat on medium low.
+      time: 120
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    3:
+      instuction: Next, add your onions
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    4:
+      instruction: the garlic
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    5:
+      instruction: and the chilli
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    6:
+      instruction: cook until softened.
+      exit_conditions:
+        - 'ready_tag_1'
+    7:
+      instruction: Add the rice
+      exit_condition:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    8:
+      instruction: quickly stir in the wine. Cook until the wine has been absorbed
+      exit_condition:
+        - 'ready_tag_1'
+    9:
+      instruction: Add enough broth to cover, not drown, the rice. Stir continually until the broth is absorbed, then, add more broth. Continue until the rice is cooked.
+      monitor:
+        stirring_pot_tag_1: 20
+      exit_condition:
+        - 'ready_tag_1'
+    10:
+      instruction: All done! Go on, try a bite!
+      exit_condition:
+        - 'tasting_tag_1'
+
