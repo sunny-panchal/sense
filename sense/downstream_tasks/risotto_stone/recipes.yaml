@@ -75,7 +75,7 @@ CreamyMushroomRisotto:
       instruction: Add enough broth to cover, not drown, the rice. Stir continually until the broth is absorbed, then, add more broth. Continue until the rice is cooked.
       monitor:
         stirring_pot_tag_1:
-          warn_after: 20
+          warn_after: 5
           message: Keep stirring the pot!
       exit_conditions:
         - 'ready_tag_1'

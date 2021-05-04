@@ -32,50 +32,16 @@ from sense.controller import Controller
 from sense.downstream_tasks.nn_utils import Pipe
 from sense.downstream_tasks.nn_utils import LogisticRegression
 from sense.downstream_tasks.postprocess import PostprocessClassificationOutput
+from sense.downstream_tasks.postprocess import PostprocessEventCounts
+from sense.downstream_tasks.risotto_stone import ENABLED_LABELS
+from sense.downstream_tasks.risotto_stone import INT2LAB
+from sense.downstream_tasks.risotto_stone import LAB2INT
+from sense.downstream_tasks.risotto_stone import LAB_THRESHOLDS
 from sense.downstream_tasks.risotto_stone.instructor import RecipeInstructor
 from sense.loading import build_backbone_network
 from sense.loading import load_weights_from_resources
 from sense.loading import update_backbone_weights
 from sense.loading import ModelConfig
-
-
-# with background
-LAB2INT = {
-  "adding_ingredient_tag_1": 0,
-  "adding_ingredient_tag_2": 1,
-  "background": 2,
-  "background_tag_1": 3,
-  "background_tag_2": 4,
-  "chopping_tag_1": 5,
-  "chopping_tag_2": 6,
-  "placing_pot_tag_1": 7,
-  "placing_pot_tag_2": 8,
-  "ready_tag_1": 9,
-  "ready_tag_2": 10,
-  "stirring_pot_tag_1": 11,
-  "stirring_pot_tag_2": 12,
-  "tasting_tag_1": 13,
-  "tasting_tag_2": 14
-}
-
-# without background
-# LAB2INT = {
-#   "adding_ingredient_tag_1": 0,
-#   "adding_ingredient_tag_2": 1,
-#   "background": 2,
-#   "chopping_tag_1": 3,
-#   "chopping_tag_2": 4,
-#   "placing_pot_tag_1": 5,
-#   "placing_pot_tag_2": 6,
-#   "ready_tag_1": 7,
-#   "ready_tag_2": 8,
-#   "stirring_pot_tag_1": 9,
-#   "stirring_pot_tag_2": 10,
-#   "tasting_tag_1": 11,
-#   "tasting_tag_2": 12
-# }
-
-INT2LAB = {v: k for k, v in LAB2INT.items()}
 
 
 if __name__ == "__main__":
@@ -112,7 +78,8 @@ if __name__ == "__main__":
     net = Pipe(backbone_network, gesture_classifier)
 
     postprocessors = [
-        PostprocessClassificationOutput(INT2LAB, smoothing=4)
+        PostprocessClassificationOutput(INT2LAB, smoothing=4),
+        PostprocessEventCounts(ENABLED_LABELS, LAB2INT, LAB_THRESHOLDS)
     ]
 
     display_ops = [
