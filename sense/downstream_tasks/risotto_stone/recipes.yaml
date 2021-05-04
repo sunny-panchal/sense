@@ -49,30 +49,30 @@ CreamyMushroomRisotto:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
     4:
-      instruction: the garlic
+      instruction: Now, add the garlic
       exit_conditions:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
     5:
-      instruction: and the chilli
+      instruction: Add the chilli
       exit_conditions:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
     6:
-      instruction: cook until softened.
+      instruction: Now cook until softened.
       exit_conditions:
         - 'ready_tag_1'
     7:
-      instruction: Add the rice
+      instruction: Next, add the rice
       exit_conditions:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
     8:
-      instruction: quickly stir in the wine. Cook until the wine has been absorbed
+      instruction: Quickly stir in the wine and cook until it's absorbed
       exit_conditions:
         - 'ready_tag_1'
     9:
-      instruction: Add enough broth to cover, not drown, the rice. Stir continually until the broth is absorbed, then, add more broth. Continue until the rice is cooked.
+      instruction: Add half as much broth as rice. Stir continually until the broth is absorbed, then, add more broth. Continue until the rice is cooked.
       monitor:
         stirring_pot_tag_1:
           warn_after: 5
