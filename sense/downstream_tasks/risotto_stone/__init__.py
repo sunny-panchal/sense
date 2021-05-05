@@ -46,6 +46,7 @@ ENABLED_LABELS = [
     "tasting_tag_1",
 ]
 
-LAB_THRESHOLDS = {key: 0.7 if key in ENABLED_LABELS else 1. for key in LAB2INT}
-LAB_THRESHOLDS["ready_tag_1"] = 0.9
+LAB_THRESHOLDS = {key: 0.6 if key in ENABLED_LABELS else 1. for key in LAB2INT}
+LAB_THRESHOLDS["ready_tag_1"] = 0.8
+LAB_THRESHOLDS["placing_pot_tag_1"] = 0.9
 LAB_THRESHOLDS["stirring_pot_tag_1"] = 0.4
