@@ -58,9 +58,6 @@ if __name__ == "__main__":
     backbone_weights = backbone_model_config.load_weights()['backbone']
 
     # Load custom classifier
-    # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_no_bg.ckpt')
-    # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_no_bg_16.ckpt')
-    # checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_bg.ckpt')
     checkpoint_classifier = load_weights_from_resources('risotto_stone/sien_pro_risotto_stone_bg_16.ckpt')
 
     # Update original weights in case some intermediate layers have been finetuned
