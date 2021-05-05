@@ -47,7 +47,7 @@ class RecipeInstructor(BaseDisplay):
         self.instructions = self.recipe["instructions"]
 
     def instruct_ingredient_prep(self, ingredient):
-        self.instruction = f"Prepare the {ingredient} ({self.ingredients[ingredient]['prep']})"
+        self.instruction = f"{self.ingredients[ingredient]['prep'].capitalize()} the {ingredient}"
         self.play_instruction = True
         self.instruction_lock = True
         self.ingredients_to_prep.pop(0)
@@ -94,6 +94,10 @@ class RecipeInstructor(BaseDisplay):
                     self.instruction = self.monitor[label]['message']
                     self.play_instruction = True
 
+                    # Play an alert tone
+                    for i in range(3):
+                        os.system("play -q -n synth 0.15 sin 880")
+
     def update_instructor(self, display_data):
         event_counts = {k: v for k, v in display_data['counting'].items()}
         predictions = {k: v for k, v in display_data['sorted_predictions']}
@@ -113,14 +117,8 @@ class RecipeInstructor(BaseDisplay):
         self.update_instructor(display_data)
 
         if self.play_instruction and self.instruction:
-            os.system(f"spd-say '{self.instruction}'")
+            os.system(f"spd-say -t female2 '{self.instruction}'")
             self.play_instruction = False
 
-        return put_text(img, self.instruction, (5, 70), font_scale=2,
-                        thickness=2, color=(255, 255, 255))
-
-
-# TODO:
-#   - Wrap display text
-#   - TTS for text
-#   - annoying buzzer for warning
+        return put_text(img, self.instruction, (5, 70), font_scale=1.2,
+                        thickness=1, color=(255, 255, 255))
