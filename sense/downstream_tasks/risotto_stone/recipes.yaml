@@ -1,0 +1,95 @@
+CreamyMushroomRisotto:
+  servings: 2
+
+  ingredients:
+    olive oil:
+      qty: 1
+      unit: tbsp
+    white onion:
+      qty: 0.5
+      unit: whole
+      prep: dice
+    garlic:
+      qty: 3
+      unit: cloves
+      prep: mince
+    mushrooms:
+      qty: 100
+      unit: g
+      prep: thinly slice
+    risotto rice:
+      qty: 100
+      unit: g
+    white wine:
+      qty: 2
+      unit: tbsp
+    vegetable stock:
+      qty: 500
+      unit: ml
+    chilli pepper:
+      qty: 1
+      unit: whole
+      prep: finely chop
+
+  instructions:
+    1:
+      instruction: Place your pot on the stove.
+      exit_conditions:
+        - 'placing_pot_tag_1'
+        - 'ready_tag_1'
+    2:
+      instruction: Add olive oil to the pot and heat on medium low.
+      time: 120
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    3:
+      instruction: Next, add your onions
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    4:
+      instruction: Now, add the garlic
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    5:
+      instruction: Add the chilli
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    6:
+      instruction: Add the mushrooms
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    7:
+      instruction: Now cook until softened.
+      exit_conditions:
+        - 'ready_tag_1'
+    8:
+      instruction: Next, add the rice
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    9:
+      instruction: Quickly stir in the wine and cook until its absorbed
+      exit_conditions:
+        - 'ready_tag_1'
+    10:
+      instruction: Add two ladels of broth. Stir continually until broth is absorbed.
+      exit_conditions:
+        - 'stirring_pot_tag_1'
+    11:
+      instruction: Continue adding more broth and stirring until cooked.
+      monitor:
+        stirring_pot_tag_1:
+          warn_after: 5
+          message: Keep stirring the pot!
+      exit_conditions:
+        - 'ready_tag_1'
+    12:
+      instruction: All done! Go on, try a bite!
+      exit_conditions:
+        - 'tasting_tag_1'
+
