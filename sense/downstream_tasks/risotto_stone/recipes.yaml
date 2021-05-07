@@ -59,23 +59,28 @@ CreamyMushroomRisotto:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
     6:
+      instruction: Add the mushrooms
+      exit_conditions:
+        - 'adding_ingredient_tag_1'
+        - 'ready_tag_1'
+    7:
       instruction: Now cook until softened.
       exit_conditions:
         - 'ready_tag_1'
-    7:
+    8:
       instruction: Next, add the rice
       exit_conditions:
         - 'adding_ingredient_tag_1'
         - 'ready_tag_1'
-    8:
+    9:
       instruction: Quickly stir in the wine and cook until its absorbed
       exit_conditions:
         - 'ready_tag_1'
-    9:
+    10:
       instruction: Add two ladels of broth. Stir continually until broth is absorbed.
       exit_conditions:
         - 'stirring_pot_tag_1'
-    10:
+    11:
       instruction: Continue adding more broth and stirring until cooked.
       monitor:
         stirring_pot_tag_1:
@@ -83,7 +88,7 @@ CreamyMushroomRisotto:
           message: Keep stirring the pot!
       exit_conditions:
         - 'ready_tag_1'
-    11:
+    12:
       instruction: All done! Go on, try a bite!
       exit_conditions:
         - 'tasting_tag_1'
